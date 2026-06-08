@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{#
+  Error template.
+  This template displays the numeric `status_code` and a short `detail` message.
+  When `status_code` indicates an error (>= 400), a helpful comment area is shown
+  to explain the situation to the user. Keep messages generic for security.
+#}
+
+{% block content %}
+  <div class="content-section py-4 px-4 mb-4 text-center">
+    <h1 class="display-1 mb-3">{{ status_code }}</h1>
+    <p class="lead mb-3">{{ detail }}</p>
+
+    {% if status_code >= 400 %}
+      <!-- This block appears because an HTTP error occurred (status >= 400). -->
+      <div class="alert alert-warning" role="alert">
+        If you reached this page after following a link, the resource may have
+        moved or been removed. If you believe this is an error, please contact
+        the site administrator.
+      </div>
+    {% endif %}
+
+    <!-- Simple inline code snippet as requested -->
+    <div class="my-3">
+      <pre class="p-3 bg-body-secondary rounded"><code>// simple code example
+oopsl</code></pre>
+    </div>
+
+    <a class="btn btn-primary" href="{{ url_for('home') }}">Back to Home</a>
+  </div>
+{% endblock content %}
+

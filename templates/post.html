@@ -1,0 +1,38 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+  {% if post %}
+    <article class="content-section py-4 px-4 mb-4">
+      <div class="d-flex align-items-center gap-4 mb-3">
+        <img class="rounded-circle article-img"
+             src="{{ url_for('static', path='profile_pics/default.jpg') }}"
+             alt="{{ post.author }}'s profile picture"
+             width="64"
+             height="64"
+             loading="lazy">
+        <div>
+          <div class="article-metadata mb-2">
+            <a class="me-2" href="#">{{ post.author }}</a>
+            <small class="text-body-secondary">{{ post.date_posted }}</small>
+          </div>
+          <h1 class="h2 mb-1">{{ post.title }}</h1>
+        </div>
+      </div>
+
+      <div class="article-content mb-4">
+        {{ post.content }}
+      </div>
+
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" href="{{ url_for('home') }}">Back to Home</a>
+        <a class="btn btn-outline-secondary" href="{{ url_for('posts') }}">View All Posts</a>
+      </div>
+    </article>
+  {% else %}
+    <div class="content-section py-4 px-4 mb-4">
+      <h2>Post not found</h2>
+      <p class="text-body-secondary">The post you were looking for does not exist.</p>
+      <a class="btn btn-primary" href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+  {% endif %}
+{% endblock content %}
